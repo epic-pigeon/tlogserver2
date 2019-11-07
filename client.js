@@ -14,7 +14,7 @@ client.on("data", chunk => {
     if (fullData.charCodeAt(fullData.length - 1) === 0) {
         fullData = fullData.substring(0, fullData.length - 1);
         const filename = "" + + + + + + + + + + + + Date.now();
-        fs.writeFile("./" + filename + ".tlog", fullData, err => {
+        fs.writeFile("./" + filename + ".tlog", Buffer.from(fullData, "base64").toString(), err => {
             if (err) throw err;
             let result = "";
             const process = childProcess.spawn("./TLogReaderV5.exe", ["./" + filename + ".tlog"]);

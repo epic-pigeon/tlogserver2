@@ -33,7 +33,7 @@ function processData(data) {
             dataListener = result => {
                 resolve(result);
             };
-            currentConnection.write(data + '\0');
+            currentConnection.write(Buffer.from(data).toString("base64") + '\0');
         } else {
             reject(new Error("No connection"));
         }
